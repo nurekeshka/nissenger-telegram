@@ -20,6 +20,7 @@ bot.start((ctx) => {
 bot.on('text', (ctx) => {
     report = '******\tReport\t******\n\n';
     report += `ID: ${ctx.message.from.id}\n`;
+    report += `Username: ${ctx.from.username}\n`;
     report += `Имя пользователя: ${ctx.from.first_name}\n\n`;
     report += `Сообщение: ${ctx.message.text}`;
 
