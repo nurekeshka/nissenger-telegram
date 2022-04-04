@@ -1,7 +1,7 @@
 const { Telegraf } = require('telegraf');
 require('dotenv').config();
 
-const bot = new Telegraf(process.env.AIRSOFT);
+const bot = new Telegraf(process.env.TOKEN);
 
 introduction = 'Привет, это команда Nissenger ✋\n\n';
 introduction += 'Нашёл баг или есть чем поделиться с нами? Распиши тут, а мы обязательно прочтём и разберемся 😎\n\n';
@@ -14,7 +14,7 @@ bot.start((ctx) => {
 });
 
 bot.on('text', (ctx) => {
-    if ((ctx.from.id === 1270570382 || ctx.from.id === 999657821) && ctx.chat.id == process.env.AIRSOFT_CHAT_ID) {
+    if ((ctx.from.id === 1270570382 || ctx.from.id === 999657821) && ctx.chat.id == process.env.CHAT_ID) {
         if (ctx.message.reply_to_message) {
             const message = ctx.message.reply_to_message.text;
             const chatid = message.slice(message.indexOf("CHAT-ID:") + 9, message.indexOf("CHAT-FIRSTNAME:") - 1);
@@ -32,7 +32,7 @@ bot.on('text', (ctx) => {
         report += `CHAT-USERNAME: ${ctx.chat.username}\n\n`;
         report += `Сообщение: "${ctx.message.text}"`;
 
-        ctx.telegram.sendMessage(process.env.AIRSOFT_CHAT_ID, report);
+        ctx.telegram.sendMessage(process.env.CHAT_ID, report);
     }
 });
 
