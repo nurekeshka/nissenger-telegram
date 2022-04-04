@@ -15,7 +15,7 @@ bot.start((ctx) => {
 
 bot.on('text', (ctx) => {
     if ((ctx.from.id === 1270570382 || ctx.from.id === 999657821) && ctx.chat.id == process.env.CHAT_ID) {
-        if (ctx.message.reply_to_message) {
+        if (ctx.message.reply_to_message && ctx.message.reply_to_message.text.startsWith("****** Report ******")) {
             const message = ctx.message.reply_to_message.text;
             const chatid = message.slice(message.indexOf("CHAT-ID:") + 9, message.indexOf("CHAT-FIRSTNAME:") - 1);
 
