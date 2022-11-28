@@ -34,4 +34,3 @@ class ReportCallbackAction(BaseCallbackAction):
     @classmethod
     def callbacks_handler(self, message: types.Message):
         bot.forward_to_admins(self.report(message))
-        bot.reply_to(message=message, text=self.callback_text)
