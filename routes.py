@@ -12,14 +12,7 @@ routepatterns = {
 
 @bot.message_handler(commands=['start'])
 def start_command(message: types.Message):
-    bot.reply_to(message=message, text=MessageTexts.menu.value,
-                 markup=interfaces.MenuMarkup())
-
-
-@bot.callback_query_handler(func=lambda call: True)
-def callback_query_handler(call: types.CallbackQuery):
-    view: callbacks.BaseCallbackAction = routepatterns[call.data]
-    view.callback_action(call)
+    bot.reply_to(message=message, text=MessageTexts.menu.value)
 
 
 @bot.message_handler(content_types=['text'])
@@ -32,5 +25,4 @@ def message_handler(message: types.Message):
 
             bot.send_message(chat_id=int(reciever), text=message.text)
     else:
-        if message.reply_to_message.from_user.id == bot.get_me().id:
-            bot.forward_to_admins(message.text)
+        callbacks.ReportCallbackAction.callbacks_handler(message)
