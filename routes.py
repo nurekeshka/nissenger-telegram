@@ -1,7 +1,6 @@
 from constants import MessageTexts
 from telebot import types
 from bot import bot
-import interfaces
 import callbacks
 
 
